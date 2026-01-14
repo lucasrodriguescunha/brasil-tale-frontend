@@ -9,7 +9,8 @@ export const Header = () => {
     { path: '/', text: 'Início' },
     { path: '/about', text: 'Sobre' },
     { path: '/shop', text: 'Loja' },
-    { path: '/vip', text: 'VIP' }
+    { path: '/vip', text: 'VIP' },
+    { path: '/suport', text: 'Suporte' }
   ]
 
   return (
