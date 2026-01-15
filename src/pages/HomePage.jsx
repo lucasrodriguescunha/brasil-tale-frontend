@@ -1,34 +1,103 @@
+import { useEffect, useState } from 'react';
+import { FaDiscord } from 'react-icons/fa';
+
 export const HomePage = () => {
+  const SERVER_IP = 'brasiltale.razehost.net:25677';
+
+  const [online, setOnline] = useState(false)
+  const [players, setPlayers] = useState(0)
+  const [copied, setCopied] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    // animação de entrada
+    setMounted(true)
+
+    // simulação de status do servidor
+    setOnline(true)
+    setPlayers(128)
+  }, [])
+
+  const copyIp = async () => {
+    await navigator.clipboard.writeText(SERVER_IP)
+    setCopied(true)
+
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
-    <>
-      <div className="flex justify-center">
-        <img
-          src="/brasiltale.png"
-          alt="Brasil Tale"
-          className="h-96 rounded-full transition-transform duration-300 ease-out hover:-translate-y-2 hover:scale-90"
-        />
+    <section
+      className={`flex flex-col items-center text-center gap-10 transition-all duration-700
+        ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+      `}
+    >
+
+      {/* Nome */}
+      <div className="font-base text-main-foreground">
+        <h1 className="font-heading text-3xl sm:text-5xl">
+          BrasilTale
+        </h1>
+
+        <p className="mt-3 text-base sm:text-lg">
+          Servidor brasileiro de <strong>Hytale</strong> focado em RPG,
+          exploração e comunidade.
+        </p>
       </div>
-      <div className="font-base">
-        <h1 className="text-2xl font-heading sm:text-4xl">Brasiltale</h1>
-        <p className="mt-2 text-lg sm:text-xl">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident itaque fugiat deserunt corporis quas cumque maxime quos totam et dolorum fuga harum, molestiae quibusdam nihil voluptate, dignissimos tempora alias. Possimus.</p>
-        <div className="mt-8 text-base sm:text-lg">
-          <p>Brasiltale.</p>
 
-          <br />
+      {/* Status */}
+      <div className="flex gap-4">
+        <span
+          className={`border-border shadow-shadow rounded-base border-2 px-4 py-1 text-sm font-semibold
+            ${online ? 'bg-green-300' : 'bg-red-300'}
+          `}
+        >
+          {online ? '🟢 Online' : '🔴 Offline'}
+        </span>
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis laudantium explicabo soluta nam praesentium beatae eligendi nisi, cumque nulla minus, impedit quisquam excepturi, id rerum optio ipsam ratione. Aliquam, vel.
-            <a
-              target="_blank"
-              className="font-heading underline"
-              href="https://github.com/neobrutalism-templates/portfolio"
-            >
-              github repo
-            </a>{' '}
-            for more info.
+        <span className="border-border shadow-shadow rounded-base bg-secondary-background border-2 px-4 py-1 text-sm font-semibold">
+          👥 {players} jogadores online
+        </span>
+      </div>
+
+      {/* IP */}
+      <button
+        onClick={copyIp}
+        className="border-border shadow-shadow rounded-base bg-main border-2 px-6 py-4 transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+      >
+        <p className="text-xs uppercase tracking-wide">
+          IP do servidor
+        </p>
+
+        <p className="font-heading text-xl sm:text-2xl select-all">
+          {SERVER_IP}
+        </p>
+
+        {copied && (
+          <p className="mt-1 text-xs text-green-700">
+            IP copiado!
           </p>
-        </div>
+        )}
+      </button>
+
+      {/* Ações */}
+      <div className="flex gap-4">
+        <a
+          href="https://discord.gg/cFeJDVYPyU"
+          target="_blank"
+          className="border-border bg-main text-foreground shadow-shadow rounded-base font-base border-2 px-5 py-2 flex items-center gap-2 transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+        >
+          <FaDiscord className="text-lg" />
+          Discord
+        </a>
+
+
+        <a
+          href="/vip"
+          className="border-border bg-secondary-background text-foreground shadow-shadow rounded-base font-base border-2 px-5 py-2 transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+        >
+          Ver VIPs
+        </a>
       </div>
-    </>
+    </section>
   );
 }
