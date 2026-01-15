@@ -54,5 +54,5 @@ export const VipPage = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

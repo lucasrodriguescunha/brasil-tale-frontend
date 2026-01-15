@@ -11,11 +11,11 @@ export const HomePage = () => {
 
   useEffect(() => {
     // animação de entrada
-    setMounted(true)
+    setMounted(true);
 
     // simulação de status do servidor
-    setOnline(true)
-    setPlayers(128)
+    setOnline(true);
+    setPlayers(0);
   }, [])
 
   const copyIp = async () => {
@@ -32,19 +32,6 @@ export const HomePage = () => {
       `}
     >
 
-      {/* Nome */}
-      <div className="font-base text-main-foreground">
-        <h1 className="font-heading text-3xl sm:text-5xl">
-          BrasilTale
-        </h1>
-
-        <p className="mt-3 text-base sm:text-lg">
-          Servidor brasileiro de <strong>Hytale</strong> focado em RPG,
-          exploração e comunidade.
-        </p>
-      </div>
-
-      {/* Status */}
       <div className="flex gap-4">
         <span
           className={`border-border shadow-shadow rounded-base border-2 px-4 py-1 text-sm font-semibold
@@ -59,7 +46,6 @@ export const HomePage = () => {
         </span>
       </div>
 
-      {/* IP */}
       <button
         onClick={copyIp}
         className="border-border shadow-shadow rounded-base bg-main border-2 px-6 py-4 transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
@@ -79,7 +65,6 @@ export const HomePage = () => {
         )}
       </button>
 
-      {/* Ações */}
       <div className="flex gap-4">
         <a
           href="https://discord.gg/cFeJDVYPyU"
@@ -90,7 +75,6 @@ export const HomePage = () => {
           Discord
         </a>
 
-
         <a
           href="/vip"
           className="border-border bg-secondary-background text-foreground shadow-shadow rounded-base font-base border-2 px-5 py-2 transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
@@ -100,4 +84,4 @@ export const HomePage = () => {
       </div>
     </section>
   );
-}
+};

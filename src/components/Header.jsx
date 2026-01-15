@@ -13,10 +13,10 @@ export const Header = () => {
   ]
 
   return (
-    <div className="fixed top-5 left-0 z-50 w-full">
-      <nav className="text-main-foreground border-border rounded-base bg-main font-base mx-auto flex items-center gap-4 border-2 p-2.5 px-5 text-sm sm:text-base w-max">
+    <header className="fixed top-5 left-0 z-50 w-full px-4">
+      <nav className="relative mx-auto flex items-center rounded-base border-2 border-border bg-main px-5 py-2.5 text-sm sm:text-base max-w-6xl">
 
-        {/* Logo */}
+        {/* Logo à esquerda */}
         <NavLink
           to="/"
           className="flex items-center gap-2 hover:opacity-90 transition-opacity"
@@ -26,16 +26,19 @@ export const Header = () => {
             alt="Brasil Tale"
             className="h-8 w-8 rounded-full border-2 border-border"
           />
+          <span className="font-semibold tracking-wide">
+            Brasiltale
+          </span>
         </NavLink>
 
-        {/* Links */}
-        <div className="flex gap-3">
+        {/* Links centralizados */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex gap-4">
           {links.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               className={clsx(
-                'hover:border-border rounded-base border-2 px-2 py-1 transition-colors',
+                'rounded-base border-2 px-3 py-1 transition-colors hover:border-border',
                 location.pathname === link.path
                   ? 'border-border'
                   : 'border-transparent'
@@ -47,6 +50,6 @@ export const Header = () => {
         </div>
 
       </nav>
-    </div>
-  )
-}
+    </header>
+  );
+};
